@@ -1,0 +1,39 @@
+
+@import "_variables";
+
+/**********************************************************************/
+
+.dropdown{
+	&-item{
+		display: inline-block;
+		background: red;
+
+		&:hover{
+			.dropdown-sub{
+				display: block;
+			}
+		}
+	}
+
+	&-label, &-sub-label{
+		padding: 10px 20px;
+		display: block;
+		
+		font-size: $base-size + 0px;
+		color: #fff;
+	}
+
+	&-label{
+		background: $color-1;
+	}
+
+	&-sub{
+		display: none;
+		position: absolute;
+		background: purple;
+	}
+
+	&-sub-label{
+		background: $color-2;
+	}
+}

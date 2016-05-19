@@ -1,0 +1,72 @@
+
+@import "_variables";
+
+/**********************************************************************/
+
+.table{
+    @include radius();
+    
+    th{
+        padding: $padding-top-bottom + ( $padding-top-bottom / 2 ) + px $padding-left-right + px;
+        background: $color-1;
+
+        font-size: 16px;
+        color: #fff;
+    }
+
+    td{
+        padding: $padding-top-bottom + px $padding-left-right + px;
+        
+        font-size: 12px;
+    }
+
+    /***/
+
+    &-border{
+        border: 1px solid lighten( $color-1 , 25% );
+
+        tr{
+            &:nth-child(2) td{
+                border-top: none;
+            }
+
+            &:nth-child(even) td{
+                background: lighten( $color-1 , 40% );
+            }
+        }
+
+        th{
+            border-bottom: 1px solid lighten( $color-1 , 25% );
+        }
+
+        td{
+            @extend td;
+            border-top: 1px solid lighten( $color-1 , 25% );
+            border-left: 1px solid lighten( $color-1 , 25% );
+
+            &:first-child{
+                border-left: none;
+            }
+        }
+    }
+
+    /***/
+
+    &-list{
+        td{
+            border-bottom: 1px dotted lighten( $color-default , 50% );
+        }
+
+        .table-title{
+            font-size: 18px;
+            color: $color-1;
+        }
+
+        .table-label{
+            display: block;
+            margin-bottom: 10px;
+
+            color: #000;
+        }
+    }
+}

@@ -1,0 +1,260 @@
+@import "_components/_variables";
+
+// MEDIA QUERIES
+
+@media (max-width: 1015px){
+	.banner-topo{
+		.sticker , .conteudo{
+			border-radius:15px;
+			width: 100%;
+			float: none;
+			margin: 15px auto;
+			&:after{
+				display:none;
+			}
+			.conteudo{
+				padding:30px 0;
+				text-align:center;
+			}
+		}
+		.form-topo{
+			margin: 15px auto;
+			width: 100%;
+			float:none;
+		}
+	}
+	.footer , .header{
+		.grid{
+			width: 100% !important;
+			float:none !important;
+			margin:15px auto !important;
+			text-align:center;
+			padding:5px 0 !important;
+			&:after{
+				display:none;
+			}
+		}
+	}
+	.footer-top , .footer-bottom{
+		padding:25px 0;
+	}
+}
+
+@media (max-width: 950px){
+	.block-infos{
+		.block{
+			width: 100% !important;
+			float: none !important;
+			height: initial;
+			.strong , .text{
+				text-align:center;
+				padding:15px 0 !important;
+			}
+		}
+	}
+	.aside , .content-right{
+		width: 100% !important;
+		float: none;
+		.bloco-consulta{
+			margin-top: 0 !important;
+			padding-top:85px !important;
+		}
+	}
+	.tabs-cadastro{
+		.tabs-menu-item{
+			width: 100%;
+			float:none;
+			&:first-child{
+				border-radius:5px 5px 0 0;
+			}
+			&:last-child{
+				border-radius:0 0 5px 5px;
+			}
+		}
+		.fieldset{
+			width: 100% !important;
+			float: none !important;
+		}
+	}
+	.avisos{
+		.block-50{
+			width: 100%;
+			text-align:center;
+			.conteudo{
+				float: none !important;
+				width: 100% !important;
+				text-align:center;
+				.fa{
+					display: block;
+					width: 100%;
+					margin: 15px auto;
+					text-align:center;
+				}
+				.text{
+					float: none;
+					padding: 0;
+					margin:0 auto;
+					width: 100%;
+					text-align:center;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 750px){
+	.scroll-table{
+		.horarios{
+			float:right;
+			.list-horarios{
+				visibility: hidden;
+			}
+		}
+		.dias-reservas{
+			width: calc( 80% - 100px );
+			float:left;
+			margin:0 50px;
+		}
+		.button-scroll-prev , .button-scroll-next{
+			top:0;
+			height: 100%;
+			display:flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.button-scroll-next{
+			border-radius:0 5px 5px 0;
+		}
+		.button-scroll-prev{
+			border-radius:5px 0 0 5px;
+		}
+	}
+	.scroll-table .dias-reservas .dias-list{
+		padding:25px 0;
+		.dia{
+			display:none;
+		}
+		.data{
+			font-size:15px;
+		}
+	}
+	.block-comodidades{
+		.grid{
+			width: 100% !important;
+			float: none !important;
+			margin: 25px auto !important;
+		}
+	}
+	.titulo-busca{
+		line-height: initial;
+	}
+	.block-table{
+		&:before{
+			display:block;
+		}
+	}
+	.table{
+		display:none;
+	}
+	.content-right{
+		.figure-busca , .descrica-busca{
+			float: none !important;
+			margin:35px auto !important;
+		}
+		.descricao-busca{
+			width: 100% !important;
+			text-align:center !important;
+		}
+	}
+	.banner-topo{
+		.form-topo{
+			.lighten-bg{
+				padding:10px;
+			}
+			.fieldset{
+				width: 100% !important;
+				.input{
+					border-bottom:1px solid #538cd4;
+				}
+				&:after{
+					display:none !important;
+				}
+			}
+			.btn-search{
+				position: initial;
+				width: 100%;
+				border-radius:0;
+			}
+		}
+	}
+	.beneficios {
+		.item{
+			width: 50%;
+		}
+	}
+	.header{
+		.figure , .nav{
+			float: none;
+			width: 100%;
+			margin: 15px auto;
+			.no-bullet{
+				width: 100%;
+				text-align:center;
+				.li{
+					float: none;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 520px){
+	.scroll-table .dias-reservas .dias-list{
+		.data{
+			font-size:12px;
+			font-weight:100;
+			padding:0 10px;
+			display:block;
+			width: 100%;
+			word-wrap:break-word;
+		}
+	}
+	.lista-resultado-busca{
+		.item{
+			.descricao-busca{
+				.buttons-info{
+					.btn{
+						float:none;
+						display:block;
+						width: 95%;
+						margin:15px auto !important;
+						font-size:18px;
+						text-align:center;
+						padding:15px 0;
+					}
+				}
+
+			}
+		}
+	}
+	.painel-conteudo{
+		padding:5px 0;
+	}
+	.beneficios{
+		.item{
+			width: 100%;
+			margin:15px auto;
+		}
+	}
+	.header{
+		.nav{
+			.no-bullet{
+				.li{
+					display:block;
+					margin: 30px auto;
+				}
+			}
+		}
+	}
+}
