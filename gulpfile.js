@@ -8,15 +8,19 @@ var gulp 		= 		require( 'gulp' )					,
 	img 		=	 	require( 'gulp-imagemin' )			;		// https://www.npmjs.com/package/gulp-imagemin
 //objeto com os caminhos de fonte e destino
 var paths = {
-	src : {
-		sass 	: 	'src/scss/**/*.scss'	,
-		js 		: 	'src/js/**/*.js'		,
-		img		: 	'src/images/**/*'
-	} ,
-	dest : {
-		sass 	: 	'dist/css'		,
-		js 		: 	'dist/js'		,
-		img		: 	'dist/images'
+		src : {
+			sass 	: 	'src/scss/**/*.scss'	,
+			js 		: 	'src/js/**/*.js'		,
+			img		: 	'src/images/**/*'
+		} ,
+		dest : {
+			sass 	: 	'dist/css'		,
+			js 		: 	'dist/js'		,
+			img		: 	'dist/images'	,
+			beauty 	: 	{
+				sass: 'dist/beauty/css' ,
+				js 	: 'dist/beauty/js'	,
+		}
 	}
 }
 // taks para compilar o sass, comprimir e colocar os prefixos
@@ -53,11 +57,11 @@ gulp.task( 'default' , ['watch'] , function(){
 gulp.task( 'beauty-css' , function(){
 	return gulp.src( paths.dest.sass + '/**/*.css' )
 			.pipe( beautify() )
-			.pipe( gulp.dest( paths.dest.sass + '/beauty' ) );
+			.pipe( gulp.dest( paths.dest.beauty.js ) );
 });
 // task para beautify (descomprimir) js
 gulp.task( 'beauty-js' , function(){
 	return gulp.src( paths.dest.js + '/**/*.js' )
 			.pipe( beautify() )
-			.pipe( gulp.dest( paths.dest.js + '/beauty' ) );
+			.pipe( gulp.dest( paths.dest.beauty.js ) );
 });
