@@ -78,8 +78,8 @@
 		'type' : 'plugin' ,
 		'dev'  : 'gabrieluizramos' ,
 		'config':{
-			'rows' : 12 ,
-			'cols'	: 3 ,
+			'rows' : 5 ,
+			'cols'	: 5 ,
 
 		}
 	}
@@ -104,7 +104,7 @@
 				+'</li>'
 			+'</ul>'
 			+'<div class="block-reservas" data-list="vagas">'
-				+'<ul class="reservas-list no-bullet">'
+				+'<ul class="reservas-list no-bullet" data-list="celulas-reserva">'
 					+'<li class="li" data-tabela="reserva">'
 						+'<ul data-reserva="reserva-horario" class="reserva-horario">'
 							+'<li data-reserva="celula-vaga" class="li vago"></li>'
@@ -117,23 +117,35 @@
 	var initialElements = initialColumns + initialRows;
 	// insere initials
 	$( '[data-scroll="table"]' ).append( initialElements );
-
+	// insere linhas
 	!function( target , modelElement ){
+		target.empty();
 		for (var i = 0; i < agenda.config.rows; i++) {
 			var newElement = modelElement.clone();
 			target.append( newElement );
 		}
 	}( $( '[data-reserva="container-horario"]' ) , $( '[data-reserva="celula-horario"]' ) );
-
+	// insere colunas
 	!function( target , modelElement ){
-		console.log( modelElement );
-		for (var i = 0; i < agenda.config.cows; i++) {
+		target.empty();
+		for (var i = 0; i < agenda.config.cols; i++) {
+			console.log( i );
 			var newElement = modelElement.clone();
 			target.append( newElement );
 		}
 	}( $( '[data-tabela="dias"]' ) , $( '[data-tabela="dias-mes"]' ) );
-	console.log( $( '[data-tabela="dias"]' ) );
-	console.log( $( '[data-tabela="dias-mes"]' ) );
+	// insere celulas
+	!function( target , modelElement ){
+		target.empty();
+		for (var i = 0; i < agenda.config.rows; i++) {
+			//var element = modelTarget.clone();
+			for (var j = 0; j < agenda.config.cols; j++) {
+				var cell = element.find( '[data-reserva="celula-vaga"]' );
+				console.log( cell );				
+			}
+		}
+
+	}( $( '[data-list="celulas-reserva"]' ) , $( '[data-tabela="reserva"]' ) );
 </script>
 <script src="dist/js/plugins/agenda/agenda.js"></script>	
 </body>
