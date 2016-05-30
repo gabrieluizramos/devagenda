@@ -77,10 +77,10 @@
 				case 'date' :
 					var date = new Date( agenda.config.dateColStart );
 					date.setDate( date.getDate() + ( i + 1 ) );
-					day = date.getDate();
-					month = ( date.getMonth() + 1 );
-					year = String( date.getFullYear() ).substring( 2 , 4 );
-					cellDate = day + '/' + month + '/' + year;
+					var day = date.getDate();
+					var month = ( date.getMonth() + 1 );
+					var year = String( date.getFullYear() ).substring( 2 , 4 );
+					var cellDate = day + '/' + month + '/' + year;
 					newElement.find( '.data' ).html( cellDate );
 					newElement.find( '.dia' ).html( agenda.config.weekDays[ date.getDay() ] );
 					break;
@@ -100,7 +100,7 @@
 			element.empty();
 			cellList.empty();
 				for (var j = 0; j < agenda.config.rows; j++) {
-					newCell = cell.clone();
+					var newCell = cell.clone();
 					for (var k = 0; k < agenda.config.occupedCells.length ; k++) {
 						var occupedCell = agenda.config.occupedCells[ k ];
 						var occupedRow = parseInt( occupedCell.split( 'x' )[0] );
