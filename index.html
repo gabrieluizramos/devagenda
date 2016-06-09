@@ -19,10 +19,16 @@
 				</section>
 				<div class="clear spaceblock"></div>
 			</section>
+			<section class="legendas-scroll-table">
+				<div class="grid grid-3"><span class="legenda vago">vago</span></div>
+				<div class="grid grid-3"><span class="legenda reservado">reservado</span></div>
+				<div class="grid grid-3"><span class="legenda bloqueado">bloqueado</span></div>
+				<div class="grid grid-3 grid-last"><span class="legenda"><i class="fa fa-tags"></i>promocional</span></div>
+			</section>
 		</div>
 	</section>
 	<!-- JQUERY -->
-	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="dist/js/jquery.min.js"></script>
 	<!-- tabela scroll -->
 	<script>
 		var agenda = {
@@ -32,11 +38,16 @@
 			config : {
 				rows : 10 ,
 				cols : 10 ,
+				// cells array must be filled with patern columNUMBERxrowNUMBER
 				occupedCells : [ '1x1' , '2x2' , '3x3' , '4x4' , '5x5' , '6x6' , '7x7' , '8x8' , '9x9' ] ,
-			rowInside : 'hour' , // number , hour , letter
-			colInside : 'date' , //date , number , letter 
-			dateColStart : '2016-05-22' ,
-			weekDays: [ 'Domingo' , 'Segunda' , 'Terça' , 'Quarta' , 'Quinta' , 'Sexta' , 'Sábado' ]
+				blockedCells : [ '2x1' , '3x2' , '4x3' ] ,
+				promoCells : [ '3x1' , '4x2' , '5x3' ] ,
+				rowInside : 'full-hour' , // number , letter , half-hour , full-hour
+				colInside : 'date' , //date , number , letter 
+				dateColStart : '2016-05-22' ,
+				hourRowStart : 8 ,
+				hourRowEnd : 18 ,
+				weekDays: [ 'Domingo' , 'Segunda' , 'Terça' , 'Quarta' , 'Quinta' , 'Sexta' , 'Sábado' ]
 		}
 	}
 </script>

@@ -34,13 +34,26 @@
 	// insere linhas
 	!function( target , modelElement ){
 		target.empty();
-		for (var i = 0; i < agenda.config.rows; i++) {
+		for ( var i = ( agenda.config.rowInside.indexOf( 'hour' )  ? ( parseInt( agenda.config.hourRowStart ) ) : 0 ) ;
+			 i < (agenda.config.rowInside.indexOf( 'hour' ) ? ( parseInt( agenda.config.hourRowEnd ) ) : agenda.config.rows ) ; 
+			 i++ ) {
 			var newElement = modelElement.clone();
 			switch ( agenda.config.rowInside ) {
-				case 'hour':
+				case 'full-hour':
 					var hour = i + 'h';
 					hour = ( i < 10 ) ? '0'+hour : hour;
 					newElement.html( hour );
+					break;
+				case 'half-hour':
+				newElement = [];
+					for (var j = 0; j < 2; j++) {
+						var newHalfElement = modelElement.clone();
+						var halfhour = i + 'h';
+						halfhour = ( i < 10 ) ? '0'+halfhour : halfhour;
+						halfhour = !j ? halfhour+'00min' : halfhour+'30min';
+						newHalfElement.html( halfhour );
+						newElement.push( newHalfElement );
+					}
 					break;
 				case 'number':
 					newElement.html( i + 1 );
@@ -99,14 +112,31 @@
 			var cell = element.find( '[data-reserva="celula-vaga"]' );
 			element.empty();
 			cellList.empty();
-				for (var j = 0; j < agenda.config.rows; j++) {
+				for (var j = 0; j <= ( agenda.config.rowInside.indexOf( 'hour' ) ? agenda.config.rows * 2 : agenda.config.rows ); j++) {
 					var newCell = cell.clone();
+					newCell.attr( 'data-disponibilidade' , 1 );
 					for (var k = 0; k < agenda.config.occupedCells.length ; k++) {
 						var occupedCell = agenda.config.occupedCells[ k ];
 						var occupedRow = parseInt( occupedCell.split( 'x' )[0] );
 						var occupedCol = parseInt( occupedCell.split( 'x' )[1] );
 						if ( ( ( i + 1 ) == occupedCol ) && ( ( j + 1 ) == occupedRow ) ) {
-							newCell.addClass( 'vago' );
+							newCell.attr( 'data-disponibilidade' , 2 );
+						}
+					}
+					for (var k = 0; k < agenda.config.blockedCells.length ; k++) {
+						var blockedCell = agenda.config.blockedCells[ k ];
+						var blockedRow = parseInt( blockedCell.split( 'x' )[0] );
+						var blockedCol = parseInt( blockedCell.split( 'x' )[1] );
+						if ( ( ( i + 1 ) == blockedCol ) && ( ( j + 1 ) == blockedRow ) ) {
+							newCell.attr( 'data-disponibilidade' , 3 );
+						}
+					}
+					for (var k = 0; k < agenda.config.promoCells.length ; k++) {
+						var promoCell = agenda.config.promoCells[ k ];
+						var promoRow = parseInt( promoCell.split( 'x' )[0] );
+						var promoCol = parseInt( promoCell.split( 'x' )[1] );
+						if ( ( ( i + 1 ) == promoCol ) && ( ( j + 1 ) == promoRow ) ) {
+							newCell.addClass( 'fa fa-tags' );
 						}
 					}
 					cellList.append( newCell );					
@@ -207,7 +237,6 @@
 					});
 				}	
 			});
-
 			if ( window.innerWidth < 750 ) {
 				$( '[data-reserva="reserva-horario"]' ).each(function( idx , el ){
 					$( el ).find( '[data-reserva="celula-vaga"]' ).each( function( index , element ){
@@ -221,5 +250,14 @@
 						$( element ).html( '&nbsp;' );
 					});
 				});
+			}
+			$( '[data-reserva="celula-vaga"]' ).unbind( 'click' ).bind( 'click' , function(){
+				var statusDisponibilidade = parseInt( $( this ).attr( 'data-disponibilidade' ) ) + 1;
+				statusDisponibilidade = ( statusDisponibilidade > 3 ) ? 1 : statusDisponibilidade;
+				$( this ).attr( 'data-disponibilidade' , statusDisponibilidade );
+			});
+			// start the table and set it visible
+			if ( $( '[data-scroll="table"]' ).css( 'visibility' ) != 'visible' ) {
+				$( '[data-scroll="table"]' ).css( 'visibility' , 'visible' );
 			}
 		});

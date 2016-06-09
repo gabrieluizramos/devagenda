@@ -789,6 +789,8 @@
 
 .scroll-table{
 	@extend .clearfix;
+	visibility:hidden;
+	transition:.5s ease-in-out;
 	width: 100%;
 	margin:150px auto;
 	*::-webkit-scrollbar{
@@ -1043,5 +1045,67 @@
 	.button-scroll-next{
 		right:-25px;
 		border-radius: 0 5px 0 0;
+	}
+	[data-disponibilidade]{
+		cursor: pointer;
+	}
+	[data-disponibilidade="1"]:nth-child( odd ) {
+		background:#e9e9e4 !important;
+	}
+	[data-disponibilidade="1"]:nth-child( even ) {
+		background:#f3f3f1 !important;
+	}
+	[data-disponibilidade="2"]{
+		background:#f9c362 !important;
+	}
+	[data-disponibilidade="3"]{
+		background:#ff87a3 !important;
+	}
+	[data-disponibilidade]:before{
+		color:rgb(255, 60, 60);
+		float: right;
+		font-size:15px;
+		padding-right: 2px;
+	}
+}
+.legendas-scroll-table{
+	.legenda{
+		color:$text-color;
+		display:block;
+		text-align:center;
+		text-transform:capitalize;
+		&:before{
+			width: 15px;
+			height: 10px;
+			display: inline-block;
+			margin-right: 10px;
+		}
+		&:not( .fa ){
+			&:before{
+				content:'';
+			}
+		}
+		&.vago{
+			&:before{
+				background: #e9e9e4;
+			}
+		}
+		&.reservado{
+			&:before{
+				background: #f9c362;
+			}			
+		}
+		&.bloqueado{
+			&:before{
+				background: #ff87a3;
+			}			
+		}
+		.fa-tags{
+			display:inline-block;
+			margin-right:10px;
+			&:before{
+				color: rgb(255, 60, 60);
+			}			
+		}
 	}
 }
