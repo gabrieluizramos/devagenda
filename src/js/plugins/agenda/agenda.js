@@ -237,6 +237,7 @@
 					});
 				}	
 			});
+			// coloca o conteudo dentro da celula, se a largura da tela < 750 o conteudo eh o conteudo das linhas (full-hour , half-hour , number)
 			if ( window.innerWidth < 750 ) {
 				$( '[data-reserva="reserva-horario"]' ).each(function( idx , el ){
 					$( el ).find( '[data-reserva="celula-vaga"]' ).each( function( index , element ){
@@ -244,6 +245,7 @@
 					});
 				});
 			}
+			// se nao, o conteudo eh um espaco em branco
 			else{
 				$( '[data-reserva="reserva-horario"]' ).each(function( idx , el ){
 					$( el ).find( '[data-reserva="celula-vaga"]' ).each( function( index , element ){
@@ -251,11 +253,18 @@
 					});
 				});
 			}
-			$( '[data-reserva="celula-vaga"]' ).unbind( 'click' ).bind( 'click' , function(){
-				var statusDisponibilidade = parseInt( $( this ).attr( 'data-disponibilidade' ) ) + 1;
-				statusDisponibilidade = ( statusDisponibilidade > 3 ) ? 1 : statusDisponibilidade;
-				$( this ).attr( 'data-disponibilidade' , statusDisponibilidade );
-			});
+			// inicia a acao de click, caso a configuracao de clickable seja verdadeira
+			if ( agenda.config.clickable ) {
+				$( '[data-reserva="celula-vaga"]' ).unbind( 'click' ).bind( 'click' , function(){
+					var statusDisponibilidade = parseInt( $( this ).attr( 'data-disponibilidade' ) ) + 1;
+					statusDisponibilidade = ( statusDisponibilidade > 3 ) ? 1 : statusDisponibilidade;
+					$( this ).attr( 'data-disponibilidade' , statusDisponibilidade );
+				});
+			}
+			// se o conteudo nao for clickavel, o cursor eh default
+			else{
+				$( '[data-reserva="celula-vaga"]' ).css( 'cursor' , 'default' );
+			}
 			// start the table and set it visible
 			if ( $( '[data-scroll="table"]' ).css( 'visibility' ) != 'visible' ) {
 				$( '[data-scroll="table"]' ).css( 'visibility' , 'visible' );
