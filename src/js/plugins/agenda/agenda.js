@@ -112,7 +112,8 @@
 			var cell = element.find( '[data-reserva="celula-vaga"]' );
 			element.empty();
 			cellList.empty();
-				for (var j = 0; j <= ( agenda.config.rowInside.indexOf( 'hour' ) ? agenda.config.rows * 2 : agenda.config.rows ); j++) {
+				for (var j = 0; j <= ( agenda.config.rowInside.indexOf( 'hour' ) ? 
+					( !( agenda.config.rowInside.indexOf( 'half' ) ) ? ( ( agenda.config.rows * 2 ) - 1 ) : ( agenda.config.rows - 1 ) )  : agenda.config.rows ); j++) {
 					var newCell = cell.clone();
 					newCell.attr( 'data-disponibilidade' , 1 );
 					for (var k = 0; k < agenda.config.occupedCells.length ; k++) {
